@@ -1,0 +1,102 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang3082{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang10 Presentaci\'f3n del Modelo TCP/IP (4 personas x 10 minutos - Expansi\'f3n con Definiciones y Traducciones)\par
+Presentador 1: \'bfC\'f3mo se comunica mi computadora con otros dispositivos en mi misma red? - La Capa de Enlace (Link Layer)\par
+\par
+\'bfQu\'e9 es la Capa de Enlace y cu\'e1l es su trabajo fundamental?\par
+\par
+La Capa de Enlace de Datos (Data Link Layer) se sit\'faa directamente sobre la Capa F\'edsica (Physical Layer) del modelo OSI (Open Systems Interconnection) / Interconexi\'f3n de Sistemas Abiertos, aunque en el modelo TCP/IP estas funcionalidades a menudo se consideran impl\'edcitas en la Capa de Enlace. Su responsabilidad primordial es proporcionar un tr\'e1nsito de datos confiable a trav\'e9s de un enlace f\'edsico espec\'edfico. Esto implica la detecci\'f3n y, a menudo, la correcci\'f3n de errores que puedan ocurrir a nivel f\'edsico.\par
+La unidad de datos de protocolo (PDU - Protocol Data Unit) / Unidad de Datos de Protocolo en esta capa es la trama (frame). La Capa de Enlace encapsula los paquetes de la Capa de Red en tramas, a\'f1adiendo encabezados y, a veces, tr\'e1ilers para el control de errores y la identificaci\'f3n de la direcci\'f3n f\'edsica.\par
+Adem\'e1s del acceso al medio, esta capa tambi\'e9n gestiona la topolog\'eda de la red local (LAN - Local Area Network) / Red de \'c1rea Local y puede implementar mecanismos de control de flujo a nivel del enlace para evitar que un transmisor r\'e1pido abrume a un receptor lento dentro del mismo segmento.\par
+\'bfC\'f3mo se identifican los dispositivos en mi red local? \'bfQu\'e9 son las direcciones MAC?\par
+\par
+La direcci\'f3n MAC (Media Access Control) / Control de Acceso al Medio, tambi\'e9n conocida como direcci\'f3n f\'edsica o direcci\'f3n Ethernet, es una direcci\'f3n de 48 bits (6 bytes) expresada com\'fanmente en notaci\'f3n hexadecimal (ej: 00:1A:2B:C3:D4:E5). Los primeros 24 bits (OUI - Organizationally Unique Identifier) / Identificador \'danico de Organizaci\'f3n identifican al fabricante de la NIC (Network Interface Card) / Tarjeta de Interfaz de Red, mientras que los \'faltimos 24 bits son asignados por el fabricante.\par
+La direcci\'f3n MAC opera en la subcapa MAC de la Capa de Enlace, seg\'fan el modelo OSI. Otra subcapa, la Logical Link Control (LLC) / Control de Enlace L\'f3gico, se encarga de la multiplexaci\'f3n de protocolos y del control de flujo a nivel de enlace. En el contexto del modelo TCP/IP simplificado, estas subcapas a menudo se consideran parte integral de la Capa de Enlace.\par
+La direcci\'f3n MAC es crucial para la conmutaci\'f3n (switching) a nivel de Capa 2. Los switches de red utilizan las direcciones MAC de destino en las tramas para reenviar el tr\'e1fico \'fanicamente al puerto donde reside el dispositivo de destino, mejorando la eficiencia de la red local.\par
+\'bfC\'f3mo se evita el caos cuando varios dispositivos quieren hablar al mismo tiempo en mi red?\par
+\par
+Los protocolos de Control de Acceso al Medio (MAC) / Control de Acceso al Medio son fundamentales para la gesti\'f3n de la contienda (contention management) en redes de acceso m\'faltiple.\par
+CSMA/CD (Carrier Sense Multiple Access with Collision Detection) / Acceso M\'faltiple con Detecci\'f3n de Portadora y Detecci\'f3n de Colisiones, utilizado en implementaciones Ethernet half-duplex, permit\'eda a los nodos escuchar el medio antes de transmitir y detectar colisiones, implementando un algoritmo de retroceso exponencial para reintentar la transmisi\'f3n. Las redes Ethernet modernas suelen operar en full-duplex, eliminando la necesidad de CSMA/CD ya que la transmisi\'f3n y recepci\'f3n ocurren simult\'e1neamente en canales separados. \~ \par
+CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance) / Acceso M\'faltiple con Detecci\'f3n de Portadora y Evitaci\'f3n de Colisiones, empleado en redes IEEE (Institute of Electrical and Electronics Engineers) / Instituto de Ingenieros El\'e9ctricos y Electr\'f3nicos 802.11 (Wi-Fi), utiliza mecanismos como RTS (Request to Send) / Petici\'f3n de Env\'edo / CTS (Clear to Send) / Libre para Enviar para reservar el medio antes de la transmisi\'f3n, reduciendo la probabilidad de colisiones en el entorno inal\'e1mbrico compartido. \~ \par
+\'bfQu\'e9 protocolos son los "lenguajes" m\'e1s comunes en mi red local?\par
+\par
+IEEE (Institute of Electrical and Electronics Engineers) / Instituto de Ingenieros El\'e9ctricos y Electr\'f3nicos 802.3 (Ethernet): Define una familia de est\'e1ndares para redes cableadas, abarcando diferentes velocidades (Fast Ethernet, Gigabit Ethernet, etc.) y las caracter\'edsticas de la capa f\'edsica y la subcapa MAC. El protocolo de trama Ethernet especifica el formato de los datos transmitidos a trav\'e9s del cable.\par
+IEEE (Institute of Electrical and Electronics Engineers) / Instituto de Ingenieros El\'e9ctricos y Electr\'f3nicos 802.11 (Wi-Fi): Un conjunto de est\'e1ndares para redes inal\'e1mbricas, con diversas versiones (802.11a/b/g/n/ac/ax, etc.) que ofrecen diferentes velocidades, frecuencias y protocolos de acceso al medio. Gestiona la comunicaci\'f3n a trav\'e9s de ondas de radio y la seguridad mediante protocolos como WPA/WPA2/WPA3.\par
+ARP (Address Resolution Protocol) / Protocolo de Resoluci\'f3n de Direcciones: Opera en la Capa de Red (IP - Internet Protocol) / Protocolo de Internet pero depende de la Capa de Enlace para enviar y recibir tramas ARP. Su funci\'f3n es mapear direcciones l\'f3gicas IPv4 a direcciones f\'edsicas MAC para la comunicaci\'f3n dentro del mismo dominio de broadcast. NDP (Neighbor Discovery Protocol) / Protocolo de Descubrimiento de Vecinos realiza una funci\'f3n similar para IPv6.\par
+\'bfCu\'e1les son los pros y contras de que la comunicaci\'f3n sea directa a nivel f\'edsico?\par
+\par
+Ventajas: Baja latencia para la comunicaci\'f3n local, alta tasa de transferencia potencial dentro de la LAN, menor sobrecarga en comparaci\'f3n con la comunicaci\'f3n enrutada.\par
+Desventajas: Escalabilidad limitada al tama\'f1o del dominio de broadcast, dependencia del medio f\'edsico y de la tecnolog\'eda de la LAN, no proporciona mecanismos inherentes para la comunicaci\'f3n a trav\'e9s de redes diferentes.\par
+Presentador 2: \'bfC\'f3mo viajan mis datos a trav\'e9s de diferentes redes hasta su destino? - La Capa de Internet (Internet Layer)\par
+\par
+\'bfCu\'e1l es el rol de la Capa de Internet en la comunicaci\'f3n global?\par
+\par
+La Capa de Red (Network Layer) es la responsable de la direcci\'f3n l\'f3gica y el enrutamiento de paquetes (packets) o datagramas a trav\'e9s de una internetwork. Su objetivo principal es habilitar la comunicaci\'f3n host-a-host a trav\'e9s de m\'faltiples enlaces de datos y redes.\par
+El Protocolo de Internet (IP) / Protocolo de Internet es el protocolo fundamental de esta capa. Los routers operan en la Capa de Red, utilizando la informaci\'f3n de la direcci\'f3n IP de destino en el encabezado del paquete para determinar la siguiente salto (hop) en la ruta hacia el destino.\par
+\'bfC\'f3mo se identifica mi dispositivo de forma \'fanica en todo el mundo? \'bfQu\'e9 son las direcciones IP?\par
+\par
+Las direcciones IP (Internet Protocol) / Protocolo de Internet son direcciones l\'f3gicas asignadas a las interfaces de red de los hosts. IPv4 (Internet Protocol version 4) / Protocolo de Internet versi\'f3n 4 utiliza direcciones de 32 bits, mientras que IPv6 (Internet Protocol version 6) / Protocolo de Internet versi\'f3n 6 emplea direcciones de 128 bits, ofreciendo un espacio de direcciones significativamente mayor.\par
+Las direcciones IP se organizan jer\'e1rquicamente, con porciones que identifican la red y el host dentro de esa red (a trav\'e9s de m\'e1scaras de subred o prefijos de red en CIDR (Classless Inter-Domain Routing) / Enrutamiento Interdominios Sin Clases notation). Esta jerarqu\'eda facilita el enrutamiento eficiente.\par
+La IANA (Internet Assigned Numbers Authority) / Autoridad de N\'fameros Asignados de Internet y los RIR (Regional Internet Registry) / Registro Regional de Internet gestionan la asignaci\'f3n de bloques de direcciones IP.\par
+\'bfQu\'e9 pasa si un mensaje es demasiado grande para viajar por una red?\par
+\par
+La fragmentaci\'f3n IP permite dividir un datagrama IP en fragmentos m\'e1s peque\'f1os si el tama\'f1o excede la MTU (Maximum Transmission Unit) / Unidad M\'e1xima de Transferencia del enlace por el que debe pasar. Cada fragmento contiene un encabezado IP con informaci\'f3n de fragmentaci\'f3n para su reensamblaje.\par
+El reensamblaje de los fragmentos se realiza en el host de destino. La fragmentaci\'f3n puede introducir ineficiencias y se evita siempre que sea posible mediante t\'e9cnicas como Path MTU Discovery / Descubrimiento de MTU de Trayectoria.\par
+\'bfCu\'e1l es el protocolo estrella de esta capa y c\'f3mo funciona?\par
+\par
+IP (Internet Protocol) / Protocolo de Internet es el protocolo de conmutaci\'f3n de paquetes (packet-switching) sin conexi\'f3n de la Capa de Red.\par
+Su naturaleza sin conexi\'f3n (connectionless) significa que cada paquete se trata de forma independiente y puede seguir diferentes rutas hacia el destino.\par
+Su servicio no confiable (unreliable delivery) o "al mejor esfuerzo" (best-effort delivery), sin mecanismos inherentes para garantizar la entrega, el orden o la ausencia de duplicados.\par
+La funci\'f3n principal de IP es el direccionamiento l\'f3gico (asignaci\'f3n y gesti\'f3n de direcciones IP) y el enrutamiento (determinaci\'f3n de la ruta que deben seguir los paquetes).\par
+\'bfQu\'e9 otros protocolos ayudan a IP en su trabajo?\par
+\par
+ICMP (Internet Control Message Protocol) / Protocolo de Mensajes de Control de Internet: Un protocolo auxiliar utilizado por los dispositivos de red (routers, hosts) para enviar mensajes de error, informaci\'f3n de diagn\'f3stico (ej: ping) y consultas de red (ej: traceroute).\par
+ARP (Address Resolution Protocol) / Protocolo de Resoluci\'f3n de Direcciones: (Como se mencion\'f3, resuelve direcciones IP a MAC dentro del mismo segmento).\par
+RARP (Reverse Address Resolution Protocol) / Protocolo de Resoluci\'f3n de Direcciones Inversa: (Un protocolo obsoleto para que un host sin disco descubriera su direcci\'f3n IP).\par
+DHCP (Dynamic Host Configuration Protocol) / Protocolo de Configuraci\'f3n Din\'e1mica de Host: Permite la asignaci\'f3n din\'e1mica de direcciones IP y otros par\'e1metros de configuraci\'f3n de red a los hosts.\par
+Protocolos de Enrutamiento (ej: RIP - Routing Information Protocol) / Protocolo de Informaci\'f3n de Enrutamiento, OSPF (Open Shortest Path First) / Primero el Camino Libre M\'e1s Corto, BGP (Border Gateway Protocol) / Protocolo de Puerta de Enlace de Borde: Utilizados por los routers para intercambiar informaci\'f3n de enrutamiento y construir tablas de enrutamiento para determinar las mejores rutas para los paquetes.\par
+\'bfCu\'e1les son las ventajas y desventajas de que la capa de internet no garantice la entrega?\par
+\par
+Ventajas: Flexibilidad para soportar diversas topolog\'edas de red y tecnolog\'edas de enlace, escalabilidad inherente a la arquitectura de conmutaci\'f3n de paquetes.\par
+Desventajas: La falta de confiabilidad requiere que las capas superiores (principalmente la Capa de Transporte) implementen mecanismos para garantizar la entrega y la integridad de los datos para aplicaciones que lo requieran.\par
+Presentador 3: \'bfC\'f3mo se aseguran las aplicaciones de que sus datos lleguen completos y en orden? - La Capa de Transporte (Transport Layer)\par
+\par
+\'bfQu\'e9 hace la Capa de Transporte para mis aplicaciones?\par
+\par
+La Capa de Transporte proporciona servicios de transporte l\'f3gico entre procesos de aplicaci\'f3n que se ejecutan en diferentes hosts. Act\'faa como un multiplexor y demultiplexor entre la Capa de Red y la Capa de Aplicaci\'f3n, abstrayendo los detalles de la transmisi\'f3n subyacente.\par
+Ofrece servicios como la segmentaci\'f3n, el reensamblaje, el control de flujo y el control de errores (en el caso de TCP - Transmission Control Protocol) / Protocolo de Control de Transmisi\'f3n).\par
+\'bfC\'f3mo pueden varias aplicaciones en mi computadora usar la misma conexi\'f3n de red al mismo tiempo?\par
+\par
+La multiplexaci\'f3n a nivel de origen permite que m\'faltiples procesos de aplicaci\'f3n env\'eden datos a trav\'e9s de la misma conexi\'f3n de red, identificados por sus n\'fameros de puerto de origen. La demultiplexaci\'f3n en el destino utiliza los n\'fameros de puerto de destino en el encabezado del segmento para dirigir los datos al socket / Conector (en el contexto de redes) o proceso de aplicaci\'f3n correcto. Los sockets, definidos por la direcci\'f3n IP y el n\'famero de puerto, identifican de forma \'fanica una conexi\'f3n de red a nivel de aplicaci\'f3n.\par
+\'bfQu\'e9 pasa con los grandes flujos de datos que env\'edan mis aplicaciones?\par
+\par
+La segmentaci\'f3n divide los flujos de datos de la Capa de Aplicaci\'f3n en segmentos de un tama\'f1o adecuado para la transmisi\'f3n a trav\'e9s de la Capa de Red. TCP (Transmission Control Protocol) / Protocolo de Control de Transmisi\'f3n gestiona la numeraci\'f3n de secuencia de estos segmentos para garantizar la entrega ordenada.\par
+\'bfQu\'e9 protocolo me garantiza que la informaci\'f3n llegar\'e1 correctamente?\par
+\par
+TCP (Transmission Control Protocol) / Protocolo de Control de Transmisi\'f3n es un protocolo orientado a la conexi\'f3n (connection-oriented), confiable (reliable) y basado en flujo (flow-based).\par
+El establecimiento de conexi\'f3n se realiza mediante un handshake de tres v\'edas (SYN - Synchronize) / Sincronizar, SYN-ACK (Synchronize-Acknowledge) / Sincronizar-Acuse de Recibo, ACK - Acknowledge) / Acuse de Recibo. La terminaci\'f3n de la conexi\'f3n implica un handshake de cuatro v\'edas (FIN - Finish) / Finalizar, ACK - Acknowledge) / Acuse de Recibo.\par
+La confiabilidad se logra mediante numeraci\'f3n de secuencia, acuse de recibo (ACK) / Acuse de Recibo con retransmisi\'f3n autom\'e1tica de solicitudes (ARQ - Automatic Repeat Request) / Petici\'f3n Autom\'e1tica de Repetici\'f3n para segmentos perdidos, y checksums para la detecci\'f3n de errores.\par
+El control de flujo (mediante la ventana deslizante) evita que el emisor abrume al receptor. El control de congesti\'f3n (algoritmos como Slow Start, Congestion Avoidance) ajusta la tasa de transmisi\'f3n para evitar la congesti\'f3n de la red.\par
+\'bfCu\'e1ndo se utiliza un protocolo m\'e1s r\'e1pido pero menos confiable?\par
+\par
+UDP (User Datagram Protocol) / Protocolo de Datagramas de Usuario es un protocolo sin conexi\'f3n (connectionless) y no confiable (unreliable) que proporciona una entrega de datagramas sin garant\'edas.\par
+Su simplicidad y baja sobrecarga lo hacen adecuado para aplicaciones sensibles al tiempo donde la retransmisi\'f3n no es deseable o donde la p\'e9rdida ocasional de paquetes es aceptable (ej: streaming de video, VoIP, juegos en l\'ednea).\par
+UDP se utiliza a menudo por protocolos de Capa de Aplicaci\'f3n que implementan su propia confiabilidad o que toleran la p\'e9rdida de datos.\par
+\'bfCu\'e1les son los pros y contras de tener protocolos orientados a la conexi\'f3n y no orientados a la conexi\'f3n?\par
+\par
+Ventajas: TCP (Transmission Control Protocol) / Protocolo de Control de Transmisi\'f3n proporciona una entrega garantizada y ordenada, crucial para aplicaciones como la transferencia de archivos y la navegaci\'f3n web. UDP (User Datagram Protocol) / Protocolo de Datagramas de Usuario ofrece menor latencia y mayor eficiencia para aplicaciones en tiempo real.\par
+Desventajas: La sobrecarga de TCP puede reducir el rendimiento para aplicaciones que requieren baja latencia. La falta de confiabilidad en UDP requiere mecanismos alternativos en la Capa de Aplicaci\'f3n si se necesita una entrega confiable.\par
+Presentador 4: \'bfC\'f3mo interact\'faan mis aplicaciones con la red? \'bfC\'f3mo ha evolucionado todo esto? - La Capa de Aplicaci\'f3n y la Evoluci\'f3n del Modelo TCP/IP\par
+\par
+\'bfD\'f3nde entran en juego mis navegadores, correos electr\'f3nicos y otras aplicaciones? - La Capa de Aplicaci\'f3n.\par
+\par
+La Capa de Aplicaci\'f3n es la capa m\'e1s cercana al usuario final, proporcionando la interfaz para los servicios de red. Los protocolos de esta capa definen los formatos de los datos intercambiados entre las aplicaciones y los servidores.\par
+Muchos protocolos de la Capa de Aplicaci\'f3n utilizan los servicios de transporte de la Capa de Transporte subyacente (TCP o UDP).\par
+\'bfCu\'e1les son algunos de los "lenguajes" que usan mis aplicaciones para comunicarse?\par
+\par
+HTTP (Hypertext Transfer Protocol) / Protocolo de Transferencia de Hipertexto: Es un protocolo sin estado (stateless) basado en el modelo cliente-servidor para la transferencia de recursos (como documentos HTML). HTTPS (HTTP Secure) / Protocolo de Transferencia de Hipertexto Seguro combina HTTP con TLS (Transport Layer Security) / Seguridad de la Capa de Transporte / SSL (Secure Sockets Layer) / Capa de Conexiones Seguras para proporcionar comunicaci\'f3n cifrada.\par
+SMTP (Simple Mail Transfer Protocol) / Protocolo Simple de Transferencia de Correo: Se utiliza para el env\'edo de correo electr\'f3nico entre servidores de correo. POP3 (Post Office Protocol version 3) / Protocolo de Oficina de Correos versi\'f3n 3 permite a los clientes descargar correos desde un servidor, mientras que IMAP (Internet Message Access Protocol) / Protocolo de Acceso a Mensajes de Internet permite a los clientes acceder\par
+\par
+Fuentes y contenido relacionado\par
+}
+ 
